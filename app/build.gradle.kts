@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "com.example.cmd_native"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.example.cmd_native"
