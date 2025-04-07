@@ -1,4 +1,4 @@
-package com.example.cmd_android_app
+package com.example.cmd_native
 
 import org.junit.Test
 

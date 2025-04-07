@@ -13,5 +13,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "cmd-android-app"
+rootProject.name = "cmd-native"
 include(":app")
