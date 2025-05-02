@@ -1,5 +1,10 @@
 package com.example.cmd_native
 
+import com.google.android.gms.ads.MobileAds
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -17,6 +22,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var textValue: EditText
     private lateinit var textResult: EditText
     private lateinit var appContext: Context
+    // private var testAdUnitPath: String = "/21775744923/example/adaptive-banner"
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,6 +34,13 @@ class MainActivity : AppCompatActivity() {
         rdFromMiles = findViewById(R.id.rbMiles)
         textValue = findViewById(R.id.textValue)
         textResult = findViewById(R.id.textResult)
+
+        val backgroundScope = CoroutineScope(Dispatchers.IO)
+        backgroundScope.launch {
+            // Initialize the Google Mobile Ads SDK on a background thread.
+            MobileAds.initialize(this@MainActivity) {}
+        }
+
     }
 
     fun handleClick(view: View) {
@@ -69,4 +84,17 @@ class MainActivity : AppCompatActivity() {
         val mValue = kValue / 1.609
         return mValue.toString()
     }
+
+//    private fun loadBanner () {
+//        // Create a new ad view.
+//        val adView = AdManagerAdView(this)
+//        adView.adUnitId = AD_UNIT_ID
+//        // Request an anchored adaptive banner with a width of 360.
+//        adView.setAdSize(AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(this, 360))
+//        this.adView = adView
+//
+//        // Replace ad container with new ad view.
+//        binding.adViewContainer.removeAllViews()
+//        binding.adViewContainer.addView(adView)
+//    }
 }
