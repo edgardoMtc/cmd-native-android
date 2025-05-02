@@ -2,17 +2,58 @@ package com.example.cmd_native
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.EditText
+import android.widget.RadioButton
+import android.view.View
+// import androidx.core.text.set
+
 
 class MainActivity : AppCompatActivity() {
-    private RadioButton rdFromKm
-    private RadioButton rdFromMiles
-    private EditText textValue
-    private EditText textResult
+    private lateinit var rdFromKm: RadioButton
+    private lateinit var rdFromMiles: RadioButton
+    private lateinit var textValue: EditText
+    private lateinit var textResult: EditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        rdFromKm = findViewById<Boolean>(R.id.rbKm)
+        rdFromKm = findViewById(R.id.rbKm)
+        rdFromMiles = findViewById(R.id.rbMiles)
+        textValue = findViewById(R.id.textValue)
+        textResult = findViewById(R.id.textResult)
+    }
+
+    fun handleClick(view: View) {
+        when (view.id) {
+            (R.id.buttonConvert) -> {
+               // var result: String? = null
+               val value = textValue.text.toString()
+                val result: String = if (rdFromKm.isChecked) {
+                    kmToMiles(value)
+                } else {
+                    milesToKM(value)
+                }
+                textResult.setText(result)
+            }
+            (R.id.buttonReset) -> {
+                rdFromKm.isChecked = false
+                rdFromMiles.isChecked = false
+                textValue.text.clear()
+                textResult.text.clear()
+            }
+        }
+    }
+
+    private fun milesToKM(miles: String): String {
+        val mValue = miles.toDouble()
+        val kmValue = mValue * 1.609
+        return kmValue.toString()
+    }
+
+    private fun kmToMiles(km: String): String {
+        val kValue = km.toDouble()
+        val mValue = kValue / 1.609
+        return mValue.toString()
     }
 }
