@@ -1,19 +1,13 @@
 package com.example.cmd_native
 
-import com.google.android.gms.ads.MobileAds
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-
 import android.content.Context
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.EditText
 import android.widget.RadioButton
-import android.view.View
 import android.widget.Toast
-
-// import androidx.core.text.set
+import androidx.appcompat.app.AppCompatActivity
+import kotlin.text.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -24,8 +18,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var appContext: Context
     // private var testAdUnitPath: String = "/21775744923/example/adaptive-banner"
 
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -35,11 +27,6 @@ class MainActivity : AppCompatActivity() {
         textValue = findViewById(R.id.textValue)
         textResult = findViewById(R.id.textResult)
 
-        val backgroundScope = CoroutineScope(Dispatchers.IO)
-        backgroundScope.launch {
-            // Initialize the Google Mobile Ads SDK on a background thread.
-            MobileAds.initialize(this@MainActivity) {}
-        }
 
     }
 
@@ -84,6 +71,51 @@ class MainActivity : AppCompatActivity() {
         val mValue = kValue / 1.609
         return mValue.toString()
     }
+//    private fun loadBanner() {
+//        // [START create_ad_view]
+//        // Create a new ad view.
+//        val adView = AdManagerAdView(this)
+//        adView.adUnitId = "/21775744923/example/adaptive-banner"
+//        // [START set_ad_size]
+//        // Request an anchored adaptive banner with a width of 360.
+//        adView.setAdSize(AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(this, 360))
+//        // [END set_ad_size]
+//        this.adView = adView
+//
+//        // Replace ad container with new ad view.
+//        binding.adViewContainer.removeAllViews()
+//        binding.adViewContainer.addView(adView)
+//        // [END create_ad_view]
+//
+//        // [START load_ad]
+//        val adRequest = AdManagerAdRequest.Builder().build()
+//        adView.loadAd(adRequest)
+//        // [END load_ad]
+//    }
+//
+//    private fun initializeMobileAdsSdk() {
+//        if (isMobileAdsInitializeCalled.getAndSet(true)) {
+//            return
+//        }
+//
+//        // Set your test devices.
+//        MobileAds.setRequestConfiguration(
+//            RequestConfiguration.Builder().setTestDeviceIds(listOf(TEST_DEVICE_HASHED_ID)).build()
+//        )
+//
+//        // [START initialize_sdk]
+//        CoroutineScope(Dispatchers.IO).launch {
+//            // Initialize the Google Mobile Ads SDK on a background thread.
+//            MobileAds.initialize(this@MyActivity) {}
+//            // [START_EXCLUDE silent]
+//            runOnUiThread {
+//                // Load an ad on the main thread.
+//                loadBanner()
+//            }
+//            // [END_EXCLUDE]
+//        }
+//        // [END initialize_sdk]
+//    }
 
 //    private fun loadBanner () {
 //        // Create a new ad view.
@@ -98,3 +130,4 @@ class MainActivity : AppCompatActivity() {
 //        binding.adViewContainer.addView(adView)
 //    }
 }
+
